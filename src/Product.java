@@ -18,7 +18,7 @@ public class Product {
 		System.out.println(p1);
 		System.out.println(p2);
 
-		p2.save_as_txt();
+		p2.save_as_csv();
 	}
 
 	// Attribute
@@ -70,9 +70,20 @@ public class Product {
 		try {
 
 			BufferedWriter bw = new BufferedWriter(
-					new FileWriter(new File(this.SAP_Code + "_" + this.label.replace(" ", "_") + ".txt")));
+					new FileWriter(new File(this.SAP_Code + "_" + this.label.replace(" ", "_") + ".csv")));
 
-			bw.write(this.toString());
+			bw.write("SAP CODE,"+this.SAP_Code + "\n");
+			bw.write("Label,"+this.label + "\n");
+			
+			if (this.price > 0) {
+				bw.write("Price,"+this.price + "\n");
+			}
+			
+			if (this.cost > 0) {
+				bw.write("Cost,"+this.cost + "\n");
+			}
+			
+
 
 			bw.close();
 
