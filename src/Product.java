@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class Product {
 		pList.add(p6);
 
 		Product.save_products_csv(pList, "AppleProducts");
+		Product.read_products_csv("AndroidProducts.csv");
 	}
 
 	// Static Methods
@@ -69,6 +72,25 @@ public class Product {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void read_products_csv(String fileName) {
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
+			String line = "";
+			while( (line = br.readLine()) != null ) {
+				System.out.println(line.replace(",", "\t| "));
+				System.out.println("--------------------------------------------------");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	// Attribute
