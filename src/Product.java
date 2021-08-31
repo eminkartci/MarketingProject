@@ -54,7 +54,9 @@ public class Product {
 				minPrice = p.price;
 			}
 
-			totalWeight += p.weight;
+			if(p.weight > 0 ){
+				totalWeight += p.weight;
+			}
 			
 		}
 
@@ -136,6 +138,7 @@ public class Product {
 		this.label = label;
 		this.price = -1;
 		this.cost = -1;
+		this.weight = Math.random() * 5 + 5;
 	}
 
 	public Product(int SAP_Code, String label, double price, double cost) {
@@ -144,6 +147,7 @@ public class Product {
 		this.label = label;
 		this.price = price;
 		this.cost = cost;
+		this.weight = Math.random() * 5 + 5;
 
 	}
 
