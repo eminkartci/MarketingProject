@@ -21,6 +21,8 @@ public class Product {
 		Product p4 = new Product(457334, "I phone X");
 		Product p5 = new Product(235644, "Android");
 		Product p6 = new Product(109942, "Monster", 18034, 8425);
+
+		
 		
 		ArrayList<Product> pList = new ArrayList<Product>();
 		pList.add(p1);
@@ -30,11 +32,19 @@ public class Product {
 		pList.add(p5);
 		pList.add(p6);
 
+		Product.get_information_arrList(pList);
+
 		Product.save_products_csv(pList, "AppleProducts");
 		Product.read_products_csv("AndroidProducts.csv");
 	}
 
 	// Static Methods
+	public static void get_information_arrList(ArrayList<Product> pList){
+		
+		syso
+
+	}	
+
 	public static void save_products_csv(ArrayList<Product> products, String fileName) {
 
 		try {
