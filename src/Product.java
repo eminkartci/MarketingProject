@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Product {
 
@@ -35,7 +36,7 @@ public class Product {
 		Product.get_information_arrList(pList);
 		Product.save_products_csv(pList, "AppleProducts");
 
-		// Product.read_products_csv("AndroidProducts.csv");
+		Product.read_products_csv("../AndroidProducts.csv");
 	}
 
 	// Static Methods
@@ -50,7 +51,7 @@ public class Product {
 			if(p.price > maxPrice){
 				maxPrice = p.price;
 			}
-			if(p.price < minPrice){
+			if(p.price < minPrice && p.price >= 0){
 				minPrice = p.price;
 			}
 
@@ -113,7 +114,16 @@ public class Product {
 			BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
 			String line = "";
 			while( (line = br.readLine()) != null ) {
-				System.out.println(line.replace(",", "\t| "));
+				System.out.println(line);
+				String[] pInfo = line.split(",");
+
+				try {
+					Product tempProduct = new Product( Integer.parseInt(pInfo[0]), pInfo[1], Double.parseDouble(pInfo[2]),Double.parseDouble(pInfo[3]),Integer.parseInt(pInfo[4]),Double.parseDouble(pInfo[5]));					
+					System.out.println(tempProduct);
+				} catch (Exception e) {
+					System.out.println("Line: " + line + " cannot be converted !!" );
+				}
+				
 				System.out.println("--------------------------------------------------");
 			}
 			
@@ -148,6 +158,17 @@ public class Product {
 		this.price = price;
 		this.cost = cost;
 		this.weight = Math.random() * 5 + 5;
+
+	}
+
+	public Product(int SAP_Code, String label, double price, double cost, int quantity, double weight) {
+
+		this.SAP_Code = SAP_Code;
+		this.label = label;
+		this.price = price;
+		this.cost = cost;
+		this.quantity = quantity;
+		this.weight = weight;
 
 	}
 
