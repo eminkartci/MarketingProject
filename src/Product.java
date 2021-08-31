@@ -36,7 +36,8 @@ public class Product {
 		Product.get_information_arrList(pList);
 		Product.save_products_csv(pList, "AppleProducts");
 
-		Product.read_products_csv("../AndroidProducts.csv");
+		ArrayList<Product> newShipment = Product.read_products_csv("../AndroidProducts.csv");
+		Product.get_information_arrList(newShipment);
 	}
 
 	// Static Methods
@@ -44,7 +45,7 @@ public class Product {
 		
 		System.out.println("Get information is started.");
 
-		double maxPrice = 0,minPrice = 0,totalWeight = 0;
+		double maxPrice = 0,minPrice = 999999,totalWeight = 0;
 
 		for(Product p: pList){
 
@@ -62,9 +63,9 @@ public class Product {
 		}
 
 		System.out.printf("There are %d products.\n",pList.size());
-		System.out.printf("The max price is %f.\n",maxPrice);
-		System.out.printf("The min price is %f.\n",minPrice);
-		System.out.printf("Total Weight is %f.\n",totalWeight);
+		System.out.printf("The max price is %.2f.\n",maxPrice);
+		System.out.printf("The min price is %.2f.\n",minPrice);
+		System.out.printf("Total Weight is %.2f.\n",totalWeight);
 
 	}	
 
