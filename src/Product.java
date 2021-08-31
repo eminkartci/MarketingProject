@@ -38,6 +38,8 @@ public class Product {
 
 		ArrayList<Product> newShipment = Product.read_products_csv("../AndroidProducts.csv");
 		Product.get_information_arrList(newShipment);
+
+		Product.save_products_csv(newShipment, "storedProducts");
 	}
 
 	// Static Methods
