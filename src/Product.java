@@ -107,10 +107,10 @@ public class Product {
 
 	}
 	
-	public static void read_products_csv(String fileName) {
+	public static ArrayList<Product> read_products_csv(String fileName) {
+		ArrayList<Product> newProducts = new ArrayList<Product>();
 		
 		try {
-			
 			BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
 			String line = "";
 			while( (line = br.readLine()) != null ) {
@@ -119,7 +119,8 @@ public class Product {
 
 				try {
 					Product tempProduct = new Product( Integer.parseInt(pInfo[0]), pInfo[1], Double.parseDouble(pInfo[2]),Double.parseDouble(pInfo[3]),Integer.parseInt(pInfo[4]),Double.parseDouble(pInfo[5]));					
-					System.out.println(tempProduct);
+					// System.out.println(tempProduct);
+					newProducts.add(tempProduct);
 				} catch (Exception e) {
 					System.out.println("Line: " + line + " cannot be converted !!" );
 				}
@@ -132,6 +133,11 @@ public class Product {
 			e.printStackTrace();
 		}
 		
+		if(newProducts.size() > 0 ){
+			return newProducts;
+		}else{
+			return null;
+		}
 		
 	}
 
