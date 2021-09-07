@@ -12,33 +12,46 @@ public class Product {
 	// TO DO:
 	// 1 - Barcode |||| | |||| || |||
 
+	// CONSTANTS
+	public static int BARCODE_LENGTH = 30;
+	public static int BARCODE_NUM_LENGTH = 15;
+
 	// TEST
 	public static void main(String[] args) {
 
-		Product p1 = new Product(245135, "Macbook Pro");
-		Product p2 = new Product(245256, "Ipad Pro", 13000, 4100);
-		Product p3 = new Product(224522, "Airpad", 8024, 1542);
-		Product p4 = new Product(457334, "I phone X");
-		Product p5 = new Product(235644, "Android");
-		Product p6 = new Product(109942, "Monster", 18034, 8425);
+		// Product p1 = new Product(245135, "Macbook Pro");
+		// Product p2 = new Product(245256, "Ipad Pro", 13000, 4100);
+		// Product p3 = new Product(224522, "Airpad", 8024, 1542);
+		// Product p4 = new Product(457334, "I phone X");
+		// Product p5 = new Product(235644, "Android");
+		// Product p6 = new Product(109942, "Monster", 18034, 8425);
 
 		
 		
-		ArrayList<Product> pList = new ArrayList<Product>();
-		pList.add(p1);
-		pList.add(p2);
-		pList.add(p3);
-		pList.add(p4);
-		pList.add(p5);
-		pList.add(p6);
+		// ArrayList<Product> pList = new ArrayList<Product>();
+		// pList.add(p1);
+		// pList.add(p2);
+		// pList.add(p3);
+		// pList.add(p4);
+		// pList.add(p5);
+		// pList.add(p6);
 
-		Product.get_information_arrList(pList);
-		Product.save_products_csv(pList, "AppleProducts");
+		// Product.get_information_arrList(pList);
+		// Product.save_products_csv(pList, "AppleProducts");
 
-		ArrayList<Product> newShipment = Product.read_products_csv("AndroidProducts.csv");
-		Product.get_information_arrList(newShipment);
+		// ArrayList<Product> newShipment = Product.read_products_csv("AndroidProducts.csv");
+		// Product.get_information_arrList(newShipment);
 
-		Product.save_products_csv(newShipment, "storedProducts");
+		// Product.save_products_csv(newShipment, "storedProducts");
+
+		
+	}
+
+	
+	
+	public static void generate_new_barcode_number(){
+
+
 	}
 
 	// Static Methods
@@ -159,6 +172,7 @@ public class Product {
 		this.price = -1;
 		this.cost = -1;
 		this.weight = Math.random() * 5 + 5;
+		generate_new_barcode();
 
 
 	}
@@ -186,6 +200,28 @@ public class Product {
 	}
 
 	// Behavior
+
+	public void generate_new_barcode(){
+
+
+		char tempChar = ' ';
+		String barcode = "";
+		for(int i = 0 ; i < Product.BARCODE_LENGTH ; i++){
+			
+			if(Math.random() > 0.5){
+				tempChar = '|';
+			}else{
+				tempChar = ' ';
+			}
+
+			barcode+= tempChar;
+
+		}
+
+		// System.out.println("BARCODE: " + barcode);
+		this.barcode = barcode;
+
+	}
 
 	public void save_as_txt() {
 
