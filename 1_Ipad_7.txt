@@ -1,4 +1,0 @@
------ Product Ipad 7-----
-| SAP Code: 1
-| Price: 13000.0
-| Cost: 4100.0

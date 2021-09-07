@@ -36,7 +36,7 @@ public class Product {
 		Product.get_information_arrList(pList);
 		Product.save_products_csv(pList, "AppleProducts");
 
-		ArrayList<Product> newShipment = Product.read_products_csv("../AndroidProducts.csv");
+		ArrayList<Product> newShipment = Product.read_products_csv("AndroidProducts.csv");
 		Product.get_information_arrList(newShipment);
 
 		Product.save_products_csv(newShipment, "storedProducts");
