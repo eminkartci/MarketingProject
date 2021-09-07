@@ -5,16 +5,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Scanner;
 
 public class Product {
 
 	// TO DO:
-	// 1 - Barcode |||| | |||| || |||
+	// 1 - Manuel Product Insert
+	// 2 
 
 	// CONSTANTS
 	public static int BARCODE_LENGTH = 30;
 	public static int BARCODE_NUM_LENGTH = 15;
+	public static Scanner scanStr = new Scanner(System.in);
+	public static Scanner scanInt = new Scanner(System.in);
 
 	// TEST
 	public static void main(String[] args) {
@@ -47,7 +50,15 @@ public class Product {
 		
 	}
 
-	
+	public static Product insert_product_by_user(){
+
+		System.out.println(" -- Product Insert Menu -- ");
+		System.out.println(" SAP Code (INTEGER): " ); int sap_code = Product.scanInt.nextInt();
+		System.out.println(" Label (STRING): " ); String label = Product.scanStr.nextLine();
+
+		return new Product(sap_code, label);
+
+	}
 	
 	public static void generate_new_barcode_number(){
 
@@ -269,7 +280,7 @@ public class Product {
 		}else{
 			content += "-,";
 		}
-		
+
 		if(this.weight > 0){
 			content +=  this.weight+ ",";
 		}else{
