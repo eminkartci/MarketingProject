@@ -11,7 +11,6 @@ public class Product {
 
 	// TO DO:
 	// 1 - Barcode |||| | |||| || |||
-	// 2 - Read from csv file
 
 	// TEST
 	public static void main(String[] args) {
@@ -149,6 +148,8 @@ public class Product {
 	double price, cost;
 	String label;
 	double weight;
+	String barcode;
+	int barcodeNumber;
 
 	// Constructor
 	public Product(int SAP_Code, String label) {
@@ -158,12 +159,12 @@ public class Product {
 		this.price = -1;
 		this.cost = -1;
 		this.weight = Math.random() * 5 + 5;
+
+
 	}
 
 	public Product(int SAP_Code, String label, double price, double cost) {
-
-		this.SAP_Code = SAP_Code;
-		this.label = label;
+		this(SAP_Code,label);
 		this.price = price;
 		this.cost = cost;
 		this.weight = Math.random() * 5 + 5;
@@ -171,13 +172,16 @@ public class Product {
 	}
 
 	public Product(int SAP_Code, String label, double price, double cost, int quantity, double weight) {
-
-		this.SAP_Code = SAP_Code;
-		this.label = label;
-		this.price = price;
-		this.cost = cost;
+		this(SAP_Code,label,price,cost);
 		this.quantity = quantity;
 		this.weight = weight;
+
+	}
+
+	public Product(int SAP_Code, String label, double price, double cost, int quantity, double weight,String barcode,int barcodeNumber) {
+		this(SAP_Code,label,price,cost,quantity,weight);
+		this.barcode = barcode;
+		this.barcodeNumber = barcodeNumber;
 
 	}
 
