@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,9 +21,18 @@ public class Product {
 	public static Scanner scanStr = new Scanner(System.in);
 	public static Scanner scanInt = new Scanner(System.in);
 	public static Random random = new Random();
+	public static HashMap barcode2product;
 
 	// TEST
 	public static void main(String[] args) {
+
+		ArrayList products = Product.read_products_csv("AppleProducts.csv");
+
+
+		
+	}
+
+	public static void initialize_product(){
 
 		Product p1 = new Product(245135, "Macbook Pro");
 		Product p2 = new Product(245256, "Ipad Pro", 13000, 4100);
@@ -49,8 +59,12 @@ public class Product {
 
 		Product.save_products_csv(newShipment, "storedProducts");
 
+	}
 
-		
+	public static void read_barcode(String barcode){
+
+
+
 	}
 
 	public static Product insert_product_by_user(){
@@ -291,18 +305,23 @@ public class Product {
 		if(this.quantity > 0){
 			content +=  this.quantity+ ",";
 		}else{
-			content += "-,";
+			content += "0,";
 		}
 
 		if(this.weight > 0){
 			content +=  this.weight+ ",";
 		}else{
-			content += "-,";
+			content += "0,";
 		}
 		
 		// Barcode 
 		if(this.barcode != null){
 			content +=  this.barcode+ ",";
+		}else{
+			content += "-,";
+		}
+		if(this.barcodeNumber != null){
+			content +=  this.barcodeNumber+ ",";
 		}else{
 			content += "-,";
 		}
