@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Product {
@@ -18,6 +19,7 @@ public class Product {
 	public static int BARCODE_NUM_LENGTH = 15;
 	public static Scanner scanStr = new Scanner(System.in);
 	public static Scanner scanInt = new Scanner(System.in);
+	public static Random random = new Random();
 
 	// TEST
 	public static void main(String[] args) {
@@ -47,6 +49,7 @@ public class Product {
 
 		Product.save_products_csv(newShipment, "storedProducts");
 
+
 		
 	}
 
@@ -60,8 +63,17 @@ public class Product {
 
 	}
 	
-	public static void generate_new_barcode_number(){
+	public void generate_new_barcode_num(){
 
+		String barcodeNumber = "";
+
+		for(int i = 0 ; i < this.BARCODE_NUM_LENGTH ; i++){
+			barcodeNumber += this.random.nextInt(10);
+		}
+
+		// System.out.println("Barcode Number:" + barcodeNumber);
+		this.barcodeNumber = barcodeNumber;
+	    
 
 	}
 
@@ -160,7 +172,7 @@ public class Product {
 	String label;
 	double weight;
 	String barcode;
-	int barcodeNumber;
+	String barcodeNumber;
 
 	// Constructor
 	public Product(int SAP_Code, String label) {
@@ -171,6 +183,7 @@ public class Product {
 		this.cost = -1;
 		this.weight = Math.random() * 5 + 5;
 		generate_new_barcode();
+		generate_new_barcode_num();
 
 
 	}
@@ -190,7 +203,7 @@ public class Product {
 
 	}
 
-	public Product(int SAP_Code, String label, double price, double cost, int quantity, double weight,String barcode,int barcodeNumber) {
+	public Product(int SAP_Code, String label, double price, double cost, int quantity, double weight,String barcode,String barcodeNumber) {
 		this(SAP_Code,label,price,cost,quantity,weight);
 		this.barcode = barcode;
 		this.barcodeNumber = barcodeNumber;
