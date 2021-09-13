@@ -17,19 +17,20 @@ public class Product {
 
 	// CONSTANTS
 	public static int BARCODE_LENGTH = 30;
-	public static int BARCODE_NUM_LENGTH = 15;
+	public static int BARCODE_NUM_LENGTH = 10;
 	public static Scanner scanStr = new Scanner(System.in);
 	public static Scanner scanInt = new Scanner(System.in);
 	public static Random random = new Random();
 	public static HashMap<String,Product> barcode2product;
+	public static HashMap<String,Product> barcodeNum2product;
 
 	// TEST
 	public static void main(String[] args) {
 
 		ArrayList products = Product.read_products_csv("AppleProducts.csv");
 
+		System.out.println(read_barcode("||  | |     | | |  || | ||||  "));
 
-		
 	}
 
 	public static void initialize_product(){
@@ -61,9 +62,14 @@ public class Product {
 
 	}
 
-	public static void read_barcode(String barcode){
+	public static Product read_barcode(String barcode){
 
-
+		try{
+			return barcode2product.get(barcode);
+		}catch (Exception e){
+			System.out.println("This barcode doesn't exist!!");
+			return null;
+		}
 
 	}
 
@@ -149,6 +155,7 @@ public class Product {
 	public static ArrayList<Product> read_products_csv(String fileName) {
 		ArrayList<Product> newProducts = new ArrayList<Product>();
 		barcode2product = new HashMap<String,Product>();
+		barcodeNum2product = new HashMap<String,Product>();
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
@@ -161,6 +168,8 @@ public class Product {
 					Product tempProduct = new Product( Integer.parseInt(pInfo[0]), pInfo[1], Double.parseDouble(pInfo[2]),Double.parseDouble(pInfo[3]),Integer.parseInt(pInfo[4]),Double.parseDouble(pInfo[5]),pInfo[6],pInfo[7]);					
 					// System.out.println(tempProduct);
 					newProducts.add(tempProduct);
+					barcode2product.put(pInfo[6], tempProduct);
+					barcode2product.put(pInfo[7], tempProduct);
 				} catch (Exception e) {
 					System.out.println("Line: " + line + " cannot be converted !!" );
 				}
@@ -346,6 +355,10 @@ public class Product {
 		// Barcode 
 		if(this.barcode != null){
 			content += "| Barcode: " + this.barcode+ "\n";
+		}
+
+		if(this.barcodeNumber != null){
+			content += "| Barcode Number: " + this.barcodeNumber+ "\n";
 		}
 
 		return content;
