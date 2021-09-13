@@ -21,7 +21,7 @@ public class Product {
 	public static Scanner scanStr = new Scanner(System.in);
 	public static Scanner scanInt = new Scanner(System.in);
 	public static Random random = new Random();
-	public static HashMap barcode2product;
+	public static HashMap<String,Product> barcode2product;
 
 	// TEST
 	public static void main(String[] args) {
@@ -148,6 +148,7 @@ public class Product {
 	
 	public static ArrayList<Product> read_products_csv(String fileName) {
 		ArrayList<Product> newProducts = new ArrayList<Product>();
+		barcode2product = new HashMap<String,Product>();
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File(fileName)));
@@ -157,7 +158,7 @@ public class Product {
 				String[] pInfo = line.split(",");
 
 				try {
-					Product tempProduct = new Product( Integer.parseInt(pInfo[0]), pInfo[1], Double.parseDouble(pInfo[2]),Double.parseDouble(pInfo[3]),Integer.parseInt(pInfo[4]),Double.parseDouble(pInfo[5]));					
+					Product tempProduct = new Product( Integer.parseInt(pInfo[0]), pInfo[1], Double.parseDouble(pInfo[2]),Double.parseDouble(pInfo[3]),Integer.parseInt(pInfo[4]),Double.parseDouble(pInfo[5]),pInfo[6],pInfo[7]);					
 					// System.out.println(tempProduct);
 					newProducts.add(tempProduct);
 				} catch (Exception e) {
